@@ -397,6 +397,49 @@ public class RegisterTests extends BaseTest {
         softAssert.assertAll();
     }
 
+    @DataProvider(name = "dataForTestWithInvalidCredentials_10")
+    public Object[][] dataForTestWithInvalidCredentials_10() {
+        return new Object[][]{
+                {"proba321321", "email@email", "123123", "123123"}, // фейлва, защото показва валиден знак за невалиден имейл
+                {"proba3213213", "email@asd.", "123123", "123123"}, // фейлва, защото ме регистрира с невалиден имейл
+                {"proba321321312", "email@", "123123", "123123"}  // фейлва, защото ме регистрира с невалиден имейл
+        };
+    }
+
+    @Test(dataProvider = "dataForTestWithInvalidCredentials_10")
+    public void registerTestWithInvalidCredentials_10(String username, String email, String password, String confirmPassword) {
+        registerPage = new RegisterPage(driver);
+
+        navigateToRegisterPage();
+
+        System.out.println("8. Populate Username field with valid username and verify a valid sign is displayed");
+        registerPage.populateUsernameField(username);
+        Assert.assertTrue(registerPage.isUsernameFieldValidSignDisplayed(), "The Username field sign is not correct!");
+
+
+        System.out.println("9. Populate Email field with invalid email and verify that the invalid sign and the correct feedback message are displayed");
+        registerPage.populateEmailField(email);
+        Assert.assertTrue(registerPage.isEmailFieldInvalidSignDisplayed(), "The Email field sign is not correct!");
+        Assert.assertEquals(registerPage.getEmailFieldFeedbackMessage(), "Email invalid!", "The Email field feedback message is not correct!");
+
+        System.out.println("10. Populate Password field with valid password and verify a valid sign is displayed");
+        registerPage.populatePasswordField(password);
+        Assert.assertTrue(registerPage.isPasswordFieldValidSignDisplayed(), "The Password field sign is not correct!");
+
+        System.out.println("11. Populate Confirm Password field with valid confirm password and verify a valid sign is displayed");
+        registerPage.populateConfirmPasswordField(confirmPassword);
+        Assert.assertTrue(registerPage.isConfirmPasswordFieldValidSignDisplayed(), "The Confirm Password field sign is not correct!");
+
+        System.out.println("12. Click Sign In button");
+        registerPage.clickSignInButton();
+
+        System.out.println("13. Verify that the toast message is as expected");
+        Assert.assertEquals(registerPage.getToastMessage(), "Registration failed!", "The toast message is not correct!");
+
+        System.out.println("14. Verify that the URL hasn't changed");
+        registerPage.verifyForCorrectUrl();
+    }
+
     private void navigateToRegisterPage() {
         System.out.println("1. Go to homepage");
         homePage.navigateToHomePage();

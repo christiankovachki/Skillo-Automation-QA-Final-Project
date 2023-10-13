@@ -19,8 +19,7 @@ public class HomePage extends BasePage {
         driver.get(HOME_URL);
     }
 
-    public String getToastMessage() {
-        waitForVisibilityOfElement(toastMessage);
-        return toastMessage.getText();
+    public void verifyForCorrectUrl() {
+        waitUrlToBe(HOME_URL);
     }
 }

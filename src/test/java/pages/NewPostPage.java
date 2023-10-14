@@ -32,6 +32,7 @@ public class NewPostPage extends BasePage {
     private WebElement toastMessage;
 
     private File overSizedFile = new File("src/test/java/images/Pano-bayer-leverkusen.jpg");
+    private File normalSizedFile = new File("src/test/java/images/automation-testing.jpg");
 
     public NewPostPage(WebDriver driver) {
         super(driver);
@@ -45,6 +46,9 @@ public class NewPostPage extends BasePage {
     public void uploadOverSizedFile() {
         uploadFile(overSizedFile);
     }
+    public void uploadNormalSizedFile() {
+        uploadFile(normalSizedFile);
+    }
 
     public void verifyImageIsVisible() {
         waitForVisibilityOfElement(imagePreview);
@@ -55,8 +59,12 @@ public class NewPostPage extends BasePage {
         return imageNameInfo.getAttribute("placeholder");
     }
 
-    public String getFileToUploadName() {
+    public String getOverSizedFileName() {
         return overSizedFile.getName();
+    }
+
+    public String getNormalSizedFileName() {
+        return normalSizedFile.getName();
     }
 
     public String getToastMessage() {

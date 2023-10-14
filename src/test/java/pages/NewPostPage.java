@@ -31,23 +31,28 @@ public class NewPostPage extends BasePage {
     @FindBy(css = ".toast-message[aria-label='Creation of post failed!']")
     private WebElement toastMessage;
 
-    private File overSizedFile = new File("src/test/java/images/Pano-bayer-leverkusen.jpg");
-    private File normalSizedFile = new File("src/test/java/images/automation-testing.jpg");
+    private File oversizedFile = new File("src/test/java/images/Pano-bayer-leverkusen.jpg");
+    private File allowedSizeFile = new File("src/test/java/images/automation-testing.jpg");
 
     public NewPostPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
+    public void verifyForCorrectUrl() {
+        waitUrlToBe(NEW_POST_URL);
+    }
+
     public void verifyUploadFormIsVisible() {
         waitForVisibilityOfElement(uploadForm);
     }
 
-    public void uploadOverSizedFile() {
-        uploadFile(overSizedFile);
+    public void uploadOversizeFile() {
+        uploadFile(oversizedFile);
     }
-    public void uploadNormalSizedFile() {
-        uploadFile(normalSizedFile);
+
+    public void uploadAllowedSizeFile() {
+        uploadFile(allowedSizeFile);
     }
 
     public void verifyImageIsVisible() {
@@ -59,12 +64,16 @@ public class NewPostPage extends BasePage {
         return imageNameInfo.getAttribute("placeholder");
     }
 
-    public String getOverSizedFileName() {
-        return overSizedFile.getName();
+    public String getOversizeFileName() {
+        return oversizedFile.getName();
     }
 
-    public String getNormalSizedFileName() {
-        return normalSizedFile.getName();
+    public String getAllowedSizeFileName() {
+        return allowedSizeFile.getName();
+    }
+
+    public void typeInCaptionField(String text) {
+        typeInField(captionField, text);
     }
 
     public String getToastMessage() {
@@ -72,20 +81,12 @@ public class NewPostPage extends BasePage {
         return toastMessage.getText();
     }
 
-    public void verifyForCorrectUrl() {
-        waitUrlToBe(NEW_POST_URL);
+    public ProfilePage clickSubmitButton() {
+        clickOnElement(submitButton);
+        return new ProfilePage(driver);
     }
 
     private void uploadFile(File file) {
         fileInput.sendKeys(file.getAbsolutePath());
-    }
-
-    public void typeInCaptionField(String text) {
-        typeInField(captionField, text);
-    }
-
-    public ProfilePage clickSubmitButton() {
-        clickOnElement(submitButton);
-        return new ProfilePage(driver);
     }
 }

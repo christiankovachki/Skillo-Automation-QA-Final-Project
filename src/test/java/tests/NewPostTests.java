@@ -24,13 +24,13 @@ public class NewPostTests extends BaseTest {
         newPostPage.verifyUploadFormIsVisible();
 
         System.out.println("7. Upload a picture");
-        newPostPage.uploadNormalSizedFile();
+        newPostPage.uploadAllowedSizeFile();
 
         System.out.println("8. Verify that the image is visible");
         newPostPage.verifyImageIsVisible();
 
         System.out.println("9. Verify that the image name is correct");
-        Assert.assertEquals(newPostPage.getUploadedImageName(), newPostPage.getNormalSizedFileName(), "The names do not match!");
+        Assert.assertEquals(newPostPage.getUploadedImageName(), newPostPage.getAllowedSizeFileName(), "The names do not match!");
 
         System.out.println("10. Populate the Post Caption field with a text over 100 characters");
         newPostPage.typeInCaptionField(caption);
@@ -60,13 +60,13 @@ public class NewPostTests extends BaseTest {
         newPostPage.verifyUploadFormIsVisible();
 
         System.out.println("7. Upload a picture which is over 10 MB");
-        newPostPage.uploadOverSizedFile();
+        newPostPage.uploadOversizeFile();
 
         System.out.println("8. Verify that the image is visible");
         newPostPage.verifyImageIsVisible();
 
         System.out.println("9. Verify that the image name is correct");
-        Assert.assertEquals(newPostPage.getUploadedImageName(), newPostPage.getOverSizedFileName(), "The names do not match!");
+        Assert.assertEquals(newPostPage.getUploadedImageName(), newPostPage.getOversizeFileName(), "The names do not match!");
 
         System.out.println("10. Populate the Post Caption field");
         newPostPage.typeInCaptionField(caption);

@@ -11,7 +11,7 @@ public class ProfileTests extends BaseTest {
     private ProfilePage profilePage;
 
     @DataProvider(name = "credentialsInfo")
-    public Object[][] credentialsInfo() {
+    private Object[][] credentialsInfo() {
         return new Object[][]{
                 {"proba123", "123123Az"}
         };
@@ -35,7 +35,7 @@ public class ProfileTests extends BaseTest {
         System.out.println("8. Click the Heart Icon");
         modalPage.likePost();
 
-        System.out.println("9. Verify that the Heart Icon is liked and the likes count have increased by 1");
+        System.out.println("9. Verify that the Heart Icon is liked and the likes count has increased by 1");
         Assert.assertTrue(modalPage.isHeartIconLiked());
         Assert.assertEquals(modalPage.getLikesCount(), initialLikesCount + 1);
 
@@ -61,7 +61,7 @@ public class ProfileTests extends BaseTest {
         System.out.println("8. Click the Thumbs Down Icon");
         modalPage.dislikePost();
 
-        System.out.println("9. Verify that the Thumbs Down Icon is liked and the dislikes count have increased by 1");
+        System.out.println("9. Verify that the Thumbs Down Icon is liked and the dislikes count has increased by 1");
         Assert.assertTrue(modalPage.isThumbsDownIconLiked());
         Assert.assertEquals(modalPage.getDislikesCount(), initialDislikesCount + 1);
 
@@ -70,13 +70,12 @@ public class ProfileTests extends BaseTest {
     }
 
     @DataProvider(name = "dataForWriteCommentTest")
-    public Object[][] dataForWriteCommentTest() {
+    private Object[][] dataForWriteCommentTest() {
         return new Object[][]{
                 {"proba123", "123123Az", "Some random comment"}
         };
     }
 
-    //Write a comment on the latest post
     @Test(dataProvider = "dataForWriteCommentTest")
     public void writeCommentTest(String username, String password, String comment) {
         profilePage = new ProfilePage(driver);
@@ -93,9 +92,8 @@ public class ProfileTests extends BaseTest {
         modalPage.addComment(comment);
 
         System.out.println("9. Verify that the comment is posted");
-        //Assert.assertEquals(modalPage.getTheLatestComment(), comment);
+        Assert.assertTrue(modalPage.isCommentPosted(comment));
     }
-
 
     @Test(dataProvider = "credentialsInfo")
     public void deleteLatestPostTest(String username, String password) {
@@ -118,7 +116,7 @@ public class ProfileTests extends BaseTest {
         System.out.println("10. Verify that the toast message is as expected");
         Assert.assertEquals(modalPage.getDeletedPostToastMessage(), "Post Deleted!", "The toast message is not correct!");
 
-        System.out.println("11. Verify that the Public Posts are decreased by 1 after deletion");
+        System.out.println("11. Verify that the Public Posts count has decreased by 1");
         int afterDeletionPostsCount = profilePage.getUsersPostsCount();
         Assert.assertEquals(afterDeletionPostsCount, initialPostsCount - 1);
     }

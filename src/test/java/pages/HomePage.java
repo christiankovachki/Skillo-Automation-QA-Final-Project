@@ -7,9 +7,6 @@ import org.openqa.selenium.support.FindBy;
 public class HomePage extends BasePage {
     private final String HOME_URL = BASE_URL + "/posts/all";
 
-    @FindBy(css = ".toast-message")
-    private WebElement toastMessage;
-
     public HomePage(WebDriver driver) {
         super(driver);
         //PageFactory.initElements(driver, this);

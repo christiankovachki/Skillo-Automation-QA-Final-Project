@@ -29,10 +29,10 @@ public class NewPostPage extends BasePage {
     private WebElement fileInput;
 
     @FindBy(css = ".toast-message[aria-label='Creation of post failed!']")
-    private WebElement toastMessage;
+    private WebElement postFailedToastMessage;
 
-    private File oversizedFile = new File("src/test/java/images/Pano-bayer-leverkusen.jpg");
-    private File allowedSizeFile = new File("src/test/java/images/automation-testing.jpg");
+    private final File oversizedFile = new File("src/test/java/images/Pano-bayer-leverkusen.jpg");
+    private final File allowedSizeFile = new File("src/test/java/images/automation-testing.jpg");
 
     public NewPostPage(WebDriver driver) {
         super(driver);
@@ -76,9 +76,8 @@ public class NewPostPage extends BasePage {
         typeInField(captionField, text);
     }
 
-    public String getToastMessage() {
-        waitForVisibilityOfElement(toastMessage);
-        return toastMessage.getText();
+    public String getPostFailedToastMessage() {
+        return getToastMessage(postFailedToastMessage);
     }
 
     public ProfilePage clickSubmitButton() {

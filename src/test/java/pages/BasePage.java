@@ -18,7 +18,7 @@ public class BasePage {
     }
 
     protected void clickOnElement(WebElement webElement) {
-        waitForElementToBeClickable(webElement);
+        wait.until(ExpectedConditions.elementToBeClickable(webElement));
         webElement.click();
     }
 
@@ -31,11 +31,12 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
-    protected void waitForElementToBeClickable(WebElement webElement) {
-        wait.until(ExpectedConditions.elementToBeClickable(webElement));
-    }
-
     protected void waitUrlToBe(String url) {
         wait.until(ExpectedConditions.urlToBe(url));
+    }
+
+    protected String getToastMessage(WebElement webElement) {
+        waitForVisibilityOfElement(webElement);
+        return webElement.getText();
     }
 }

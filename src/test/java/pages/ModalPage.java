@@ -9,11 +9,9 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class ModalPage extends BasePage {
+
     @FindBy(className = "modal-content")
     private WebElement modal;
-
-    @FindBy(css = "input[placeholder='Comment here']")
-    private WebElement commentField;
 
     @FindBy(css = ".like.fa-heart")
     private WebElement heartIcon;
@@ -33,6 +31,18 @@ public class ModalPage extends BasePage {
     @FindBy(xpath = "//strong[contains(.,' dislikes')]")
     private WebElement dislikesCount;
 
+    @FindBy(css = ".delete-ask")
+    private WebElement deleteLink;
+
+    @FindBy(css = "button.btn:first-child")
+    private WebElement deleteConfirmButton;
+
+    @FindBy(css = "input[placeholder='Comment here']")
+    private WebElement commentField;
+
+    @FindBy(css = ".comment-content")
+    private List<WebElement> commentsList;
+
     @FindBy(css = ".toast-message[aria-label='Post liked']")
     private WebElement likedPostToastMessage;
 
@@ -41,15 +51,6 @@ public class ModalPage extends BasePage {
 
     @FindBy(css = ".toast-message[aria-label='Post Deleted!']")
     private WebElement deletedPostToastMessage;
-
-    @FindBy(css = ".delete-ask")
-    private WebElement deleteLink;
-
-    @FindBy(css = "button.btn:first-child")
-    private WebElement deleteConfirmButton;
-
-    @FindBy(css = ".comment-content")
-    private List<WebElement> commentsList;
 
     public ModalPage(WebDriver driver) {
         super(driver);
@@ -65,6 +66,17 @@ public class ModalPage extends BasePage {
         commentField.sendKeys(Keys.ENTER);
     }
 
+    public boolean isCommentPosted(String comment) {
+        for (int i = 0; i < commentsList.size(); i++) {
+            String currentComment = commentsList.get(i).getText();
+            if (currentComment.equals(comment)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void likePost() {
         clickOnElement(heartIcon);
     }
@@ -75,26 +87,26 @@ public class ModalPage extends BasePage {
         return heartIcon.getAttribute("class").contains(" liked");
     }
 
-    public boolean isThumbsDownIconLiked() {
-        waitForVisibilityOfElement(likedThumbsDownIcon);
-
-        return likedThumbsDownIcon.getAttribute("class").contains("liked");
-    }
-
     public int getLikesCount() {
         waitForVisibilityOfElement(likesCount);
 
         return Integer.parseInt(String.valueOf(likesCount.getText().charAt(0)));
     }
 
+    public void dislikePost() {
+        clickOnElement(thumbsDownIcon);
+    }
+
+    public boolean isThumbsDownIconLiked() {
+        waitForVisibilityOfElement(likedThumbsDownIcon);
+
+        return likedThumbsDownIcon.getAttribute("class").contains("liked");
+    }
+
     public int getDislikesCount() {
         waitForVisibilityOfElement(dislikesCount);
 
         return Integer.parseInt(String.valueOf(dislikesCount.getText().charAt(0)));
-    }
-
-    public void dislikePost() {
-        clickOnElement(thumbsDownIcon);
     }
 
     public void deletePost() {
@@ -112,10 +124,5 @@ public class ModalPage extends BasePage {
 
     public String getDeletedPostToastMessage() {
         return getToastMessage(deletedPostToastMessage);
-    }
-
-    private String getToastMessage(WebElement webElement) {
-        waitForVisibilityOfElement(webElement);
-        return webElement.getText();
     }
 }

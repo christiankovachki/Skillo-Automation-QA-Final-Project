@@ -39,7 +39,7 @@ public class RegisterPage extends BasePage {
     private WebElement confirmPasswordFieldFeedbackMessage;
 
     @FindBy(css = ".toast-message")
-    private WebElement toastMessage;
+    private WebElement registerToastMessage;
 
     public RegisterPage(WebDriver driver) {
         super(driver);
@@ -124,8 +124,7 @@ public class RegisterPage extends BasePage {
     }
 
     public String getToastMessage() {
-        waitForVisibilityOfElement(toastMessage);
-        return toastMessage.getText();
+        return getToastMessage(registerToastMessage);
     }
 
     private boolean isValidSignDisplayed(WebElement webElement) {

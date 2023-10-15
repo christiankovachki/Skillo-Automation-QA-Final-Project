@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import pages.HeaderPage;
 import pages.HomePage;
@@ -19,16 +20,19 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 
 public class BaseTest {
-    private SimpleDateFormat simpleDateFormat;
-    private Timestamp timestamp;
     private static final String SCREENSHOT_DIR = "src\\test\\java\\resources\\screenshots\\";
     protected WebDriver driver;
     protected HomePage homePage;
     protected HeaderPage headerPage;
 
+    @BeforeClass
+    public void cleanDir() {
+        cleanDirectory(SCREENSHOT_DIR);
+    }
+
     @BeforeMethod
     public void setUp() {
-        cleanDirectory(SCREENSHOT_DIR);
+        //cleanDirectory(SCREENSHOT_DIR);
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -68,8 +72,8 @@ public class BaseTest {
     }
 
     private String getCurrentTime() {
-        simpleDateFormat = new SimpleDateFormat("'_'dd-MM-yyyy'_'HH.mm");
-        timestamp = new Timestamp(System.currentTimeMillis());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("'_'dd-MM-yyyy'_'HH.mm");
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
         return simpleDateFormat.format(timestamp);
     }

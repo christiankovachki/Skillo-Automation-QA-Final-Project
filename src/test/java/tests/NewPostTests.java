@@ -16,7 +16,7 @@ public class NewPostTests extends BaseTest {
     }
 
     @Test(dataProvider = "dataForOverLimitCaptionTextTest")
-    public void uploadAnImageWithCaptionOverHundredCharacters(String username, String password, String caption) {
+    public void uploadAnImageWithCaptionOverHundredCharactersTest(String username, String password, String caption) {
         navigateToNewPostPage(username, password);
 
         System.out.println("6. Verify that the Upload Form is visible");
@@ -38,8 +38,8 @@ public class NewPostTests extends BaseTest {
         System.out.println("11. Click Submit button");
         newPostPage.clickSubmitButton();
 
-        System.out.println("12. Verify that the toast message is as expected");
-        Assert.assertEquals(newPostPage.getPostFailedToastMessage(), "Creation of post failed!", "The toast message is not correct!");
+        System.out.println("12. Verify that the toast message is 'Creation of post failed!'");
+        Assert.assertEquals(newPostPage.getPostFailedToastMessage(), "Creation of post failed!", "The toast message is not 'Creation of post failed!'");
 
         System.out.println("13. Verify that the URL hasn't changed");
         newPostPage.verifyForCorrectUrl();
@@ -53,7 +53,7 @@ public class NewPostTests extends BaseTest {
     }
 
     @Test(dataProvider = "dataForOverSizedImageTest")
-    public void uploadAnImageOverTheSizeLimit(String username, String password, String caption) {
+    public void uploadAnImageOverTheSizeLimitTest(String username, String password, String caption) {
         navigateToNewPostPage(username, password);
 
         System.out.println("6. Verify that the Upload Form is visible");
@@ -75,8 +75,8 @@ public class NewPostTests extends BaseTest {
         System.out.println("11. Click Submit button");
         newPostPage.clickSubmitButton();
 
-        System.out.println("12. Verify that the toast message is as expected");
-        Assert.assertEquals(newPostPage.getPostFailedToastMessage(), "Creation of post failed!", "The toast message is not correct!");
+        System.out.println("12. Verify that the toast message is 'Creation of post failed!'");
+        Assert.assertEquals(newPostPage.getPostFailedToastMessage(), "Creation of post failed!", "The toast message is not 'Creation of post failed!'");
 
         System.out.println("13. Verify that the URL hasn't changed");
         newPostPage.verifyForCorrectUrl();

@@ -31,8 +31,8 @@ public class NewPostPage extends BasePage {
     @FindBy(css = ".toast-message[aria-label='Creation of post failed!']")
     private WebElement postFailedToastMessage;
 
-    private final File oversizedFile = new File("src/test/java/images/Pano-bayer-leverkusen.jpg");
-    private final File allowedSizeFile = new File("src/test/java/images/automation-testing.jpg");
+    private final File oversizedFile = new File("src/test/java/resources/images/oversize-image.jpg");
+    private final File allowedSizeFile = new File("src/test/java/resources/images/allowed-size-image.jpg");
 
     public NewPostPage(WebDriver driver) {
         super(driver);

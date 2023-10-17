@@ -10,6 +10,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import pages.HeaderPage;
 import pages.HomePage;
 
@@ -25,18 +26,17 @@ public class BaseTest {
     protected HomePage homePage;
     protected HeaderPage headerPage;
 
-    @BeforeClass
+    @BeforeSuite
     public void cleanDir() {
         cleanDirectory(SCREENSHOT_DIR);
     }
 
     @BeforeMethod
     public void setUp() {
-        //cleanDirectory(SCREENSHOT_DIR);
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         homePage = new HomePage(driver);
         headerPage = new HeaderPage(driver);
@@ -45,7 +45,7 @@ public class BaseTest {
     @AfterMethod
     public void tearDown(ITestResult testResult) {
         takeScreenshot(testResult);
-        //driver.close();
+        driver.close();
     }
 
     private void takeScreenshot(ITestResult testResult) {
@@ -53,7 +53,6 @@ public class BaseTest {
             TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
             File screenshot = takesScreenshot.getScreenshotAs(OutputType.FILE);
             String testName = testResult.getName().concat(getCurrentTime());
-            //String testName = testResult.getMethod().getMethodName().concat(getCurrentTime());
             try {
                 FileUtils.copyFile(screenshot, new File(SCREENSHOT_DIR.concat(testName).concat(".jpeg")));
             } catch (IOException e) {

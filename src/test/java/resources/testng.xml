@@ -1,0 +1,52 @@
+<suite name="iSkillo Tests Suite" verbose="1">
+    <test name="Register Tests">
+        <classes>
+            <class name="tests.RegisterTests">
+                <methods>
+                    <include name="registerWithValidCredentialsTest"></include>
+                    <include name="registerWithInvalidCredentialsTest_1"></include>
+                    <include name="registerWithInvalidCredentialsTest_2"></include>
+                    <include name="registerWithInvalidCredentialsTest_3"></include>
+                    <include name="registerWithInvalidCredentialsTest_4"></include>
+                    <include name="registerWithInvalidCredentialsTest_5"></include>
+                    <include name="registerWithInvalidCredentialsTest_6"></include>
+                    <include name="registerWithInvalidCredentialsTest_7"></include>
+                    <include name="registerWithInvalidCredentialsTest_8"></include>
+                    <include name="registerWithInvalidCredentialsTest_9"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Create Post Tests">
+        <classes>
+            <class name="tests.NewPostTests">
+                <methods>
+                    <include name="uploadAnImageWithCaptionOverHundredCharactersTest"></include>
+                    <include name="uploadAnImageOverTheSizeLimitTest"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Logged Out User Tests">
+        <classes>
+            <class name="tests.HomePageTests">
+                <methods>
+                    <include name="likePostAsLoggedOutUserTest"></include>
+                    <include name="dislikePostAsLoggedOutUserTest"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Logged In User Tests">
+        <classes>
+            <class name="tests.ProfileTests">
+                <methods>
+                    <include name="likePostAsLoggedInUserTest"></include>
+                    <include name="dislikePostAsLoggedInUserTest"></include>
+                    <include name="writeCommentTest"></include>
+                    <include name="deletePostTest"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -94,7 +94,7 @@ public class NewPostTests extends BaseTest {
         loginPage.verifyLoginFormIsVisible();
 
         System.out.println("4. Populate Username and Password fields with valid credentials and click Sign in button");
-        loginPage.loginSteps(username, password);
+        loginPage.login(username, password);
 
         System.out.println("5. Click New Post link");
         headerPage.clickNewPostLink();

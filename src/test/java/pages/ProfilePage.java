@@ -25,6 +25,7 @@ public class ProfilePage extends BasePage {
             clickOnElement(listOfUsersPosts.get(latestPostIndex));
         } catch (IndexOutOfBoundsException exception) {
             System.out.println("The User does NOT have any Public Posts!");
+            throw new IndexOutOfBoundsException();
         }
 
         return new ModalPage(driver);

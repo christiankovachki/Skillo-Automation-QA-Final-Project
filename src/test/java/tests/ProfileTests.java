@@ -17,7 +17,7 @@ public class ProfileTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "credentialsInfo")
+    @Test(dataProvider = "credentialsInfo", priority = 1)
     public void likePostAsLoggedInUserTest(String username, String password) {
         profilePage = new ProfilePage(driver);
 
@@ -43,7 +43,7 @@ public class ProfileTests extends BaseTest {
         Assert.assertEquals(modalPage.getLikedPostToastMessage(), "Post liked", "The toast message is not 'Post liked");
     }
 
-    @Test(dataProvider = "credentialsInfo")
+    @Test(dataProvider = "credentialsInfo", priority = 2)
     public void dislikePostAsLoggedInUserTest(String username, String password) {
         profilePage = new ProfilePage(driver);
 
@@ -76,7 +76,7 @@ public class ProfileTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "dataForWriteCommentTest")
+    @Test(dataProvider = "dataForWriteCommentTest", priority = 3)
     public void writeCommentTest(String username, String password, String comment) {
         profilePage = new ProfilePage(driver);
 
@@ -95,7 +95,7 @@ public class ProfileTests extends BaseTest {
         Assert.assertTrue(modalPage.isCommentPosted(comment), "The comment is not posted!");
     }
 
-    @Test(dataProvider = "credentialsInfo")
+    @Test(dataProvider = "credentialsInfo", priority = 4)
     public void deletePostTest(String username, String password) {
         profilePage = new ProfilePage(driver);
 
@@ -133,7 +133,7 @@ public class ProfileTests extends BaseTest {
         loginPage.verifyLoginFormIsVisible();
 
         System.out.println("4. Populate Username and Password fields with valid credentials and click Sign in button");
-        loginPage.loginSteps(username, password);
+        loginPage.login(username, password);
 
         System.out.println("5. Verify that the URL has changed to /posts/all");
         homePage.verifyForCorrectUrl();

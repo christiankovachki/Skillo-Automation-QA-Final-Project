@@ -14,7 +14,7 @@ public class RegisterTests extends BaseTest {
     @DataProvider(name = "dataForTestWithValidCredentials")
     public Object[][] dataForTestWithValidCredentials() {
         return new Object[][]{
-                {"kovachki_1", "kovachki_1@abv.bg", "123456", "123456"}
+                {"kovachki_11", "kovachki_11@abv.bg", "123456", "123456"}
         };
     }
 
@@ -53,7 +53,7 @@ public class RegisterTests extends BaseTest {
     @DataProvider(name = "dataForTestWithInvalidCredentials_1")
     public Object[][] dataForTestWithInvalidCredentials_1() {
         return new Object[][]{
-                {"kovachki_1_sk10", "kovachki_1_sk10#something.com", "12345", "123123"}
+                {"kovachki_11_sk10", "kovachki_11_sk10#something.com", "12345", "123123"}
         };
     }
 
@@ -95,7 +95,7 @@ public class RegisterTests extends BaseTest {
     @DataProvider(name = "dataForTestWithInvalidCredentials_2")
     public Object[][] dataForTestWithInvalidCredentials_2() {
         return new Object[][]{
-                {"r", "kovachki_1_sk10", "123123", "123123"}
+                {"k", "kovachki_11_sk10", "123123", "123123"}
         };
     }
 
@@ -136,7 +136,7 @@ public class RegisterTests extends BaseTest {
     @DataProvider(name = "dataForTestWithInvalidCredentials_3")
     public Object[][] dataForTestWithInvalidCredentials_3() {
         return new Object[][]{
-                {"kovachki_2", "kovachki_2_sk10@something.com", "12345secretsauce12345", "12345secretsauce12345"}
+                {"kovachki_22", "kovachki_22_sk10@something.com", "12345secretsauce12345", "12345secretsauce12345"}
         };
     }
 
@@ -176,7 +176,7 @@ public class RegisterTests extends BaseTest {
     @DataProvider(name = "dataForTestWithInvalidCredentials_4")
     public Object[][] dataForTestWithInvalidCredentials_4() {
         return new Object[][]{
-                {"kovachki_1_sk10000000", "kovachki_3__sk10@something.com", "12345678910111213141", "123123"}
+                {"kovachki_1_sk10000001", "kovachki_33_sk10@something.com", "12345678910111213141", "123123"}
         };
     }
 
@@ -217,7 +217,7 @@ public class RegisterTests extends BaseTest {
     @DataProvider(name = "dataForTestWithInvalidCredentials_5")
     public Object[][] dataForTestWithInvalidCredentials_5() {
         return new Object[][]{
-                {"proba123", "proba123@asd.com", "123123", "123123"}
+                {"proba123", "1proba13@asd.com", "123123", "123123"}
         };
     }
 
@@ -256,7 +256,7 @@ public class RegisterTests extends BaseTest {
     @DataProvider(name = "dataForTestWithInvalidCredentials_6")
     public Object[][] dataForTestWithInvalidCredentials_6() {
         return new Object[][]{
-                {"kovachki_4", "kovachki_4__sk10@something.com", "123123", "321321"}
+                {"kovachki_44", "kovachki_44_sk10@something.com", "123123", "321321"}
         };
     }
 
@@ -296,7 +296,7 @@ public class RegisterTests extends BaseTest {
     @DataProvider(name = "dataForTestWithInvalidCredentials_7")
     public Object[][] dataForTestWithInvalidCredentials_7() {
         return new Object[][]{
-                {"kovachki_2", "email@email.com", "123123", "123123"}
+                {"kovachki_222", "email@email.com", "123123", "123123"}
         };
     }
 
@@ -377,9 +377,9 @@ public class RegisterTests extends BaseTest {
     @DataProvider(name = "dataForTestWithInvalidCredentials_9")
     public Object[][] dataForTestWithInvalidCredentials_9() {
         return new Object[][]{
-                {"proba32132111", "email1@email", "123123", "123123"},
-                {"proba321321311", "email2@asd.", "123123", "123123"},
-                {"proba32132131211", "email2@", "123123", "123123"}
+                {"proba3213213212", "email1@email", "123123", "123123"},
+                {"proba3213213313", "email2@asd.", "123123", "123123"},
+                {"proba32132131213", "email2@", "123123", "123123"}
         };
     }
 

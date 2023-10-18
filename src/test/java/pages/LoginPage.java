@@ -28,7 +28,7 @@ public class LoginPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public HeaderPage loginSteps(String username, String password) {
+    public HeaderPage login(String username, String password) {
         typeInField(usernameField, username);
         typeInField(passwordField, password);
         clickOnElement(signInButton);

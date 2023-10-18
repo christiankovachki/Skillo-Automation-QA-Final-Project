@@ -1,6 +1,12 @@
-# Skillo-Automation-QA-Final-Project
-# WORK IN PROGRESS
-Skillo Final Project - End Date - 09/11/2023
+# SKILLO AUTOMATION QA FINAL PROJECT
+
+Java Maven Test Automation Framework, build using Selenium WebDriver, TestNG, Page Object Model Design Pattern and Page Factory.
+
+The tests check the functionality of the ISkillo Training Web Application: http://training.skillo-bg.com:4200/
+
+If a test failure occurs, a screenshot gets saved in a 'screenshots' folder inside the 'resources' folder in the project structure.
+
+To run the tests use the 'mvn clean test' command.
 
 # Home Page Tests
 

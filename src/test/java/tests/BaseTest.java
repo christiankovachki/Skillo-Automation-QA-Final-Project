@@ -15,9 +15,13 @@ import pages.HomePage;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+
+import static java.nio.file.Path.*;
 
 public class BaseTest {
     private static final String SCREENSHOT_DIR = "src\\test\\java\\resources\\screenshots\\";
@@ -62,7 +66,13 @@ public class BaseTest {
 
     private void cleanDirectory(String directoryPath) {
         File directory = new File(directoryPath);
+
         try {
+            Path screenshotsDir = of(directoryPath);
+            if (!Files.exists(screenshotsDir)) {
+                Files.createDirectories(screenshotsDir);
+            }
+
             FileUtils.cleanDirectory(directory);
         } catch (IOException e) {
             throw new RuntimeException(e);
